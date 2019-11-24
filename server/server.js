@@ -4,8 +4,8 @@ import expressSession from 'express-session';
 import passport from 'passport';
 import logger from 'morgan';
 import mongoose from 'mongoose';
-import path from 'path';
 
+const path = require('path');
 import config from './config';
 
 // Create app instance
