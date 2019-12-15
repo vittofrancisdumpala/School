@@ -13,6 +13,7 @@ import * as PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {openAction, closeAction} from "../../../App/actions";
 import PatientRegistrationDialog from "../../../components/Dialogs/patientRegistrationDialog";
+import add_user from "../../../assets/images/undraw_add_user_ipe3.svg";
 const useStyles = makeStyles({
 
 });
@@ -29,7 +30,7 @@ function InfoCards(props) {
                             component="img"
                             alt="Contemplative Reptile"
                             height="140"
-                            image={require("../../../assets/images/undraw_add_user_ipe3.svg")}
+                            image={add_user}
                             title="Contemplative Reptile"
                         />
                         <CardContent>
