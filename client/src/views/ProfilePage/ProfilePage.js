@@ -8,7 +8,7 @@ import GridItem from "../../components/Grid/GridItem.js";
 import Parallax from "../../components/Parallax/Parallax.js";
 import styles from "./ProfilePageStyle";
 import profile from "../../assets/images/undraw_profile_6l1l.svg";
-
+import bgImage from "../../assets/images/profile-bg.jpg";
 const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
@@ -21,7 +21,7 @@ export default function ProfilePage(props) {
     );
     return (
         <div>
-            <Parallax small filter image={require("../../assets/images/profile-bg.jpg")} />
+            <Parallax small filter image={bgImage} />
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div>
                     <div className={''}>
