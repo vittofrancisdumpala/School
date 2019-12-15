@@ -11,7 +11,6 @@ import config from './config';
 // Create app instance
 const app = express();
 const router = express.Router();
-
 // Connect to DB
 mongoose.connect(config.mongoURL, { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -25,8 +24,11 @@ app.use(logger('dev'));
 
 // Link routes
 import auth from './routes/auth.route'
+import patient from './routes/patient.route'
+
 //app.use('/api', stores);
 app.use('/api/auth', auth);
+app.use('/api/client',patient);
 
 // Serve static assets
 if (process.env.NODE_ENV === 'production') {

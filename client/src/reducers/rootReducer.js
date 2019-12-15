@@ -2,9 +2,10 @@
  * Root reducer
  */
 import { combineReducers } from 'redux';
-import appReducer from "./reducers";
+import appReducer from "../App/reducers";
 import authReducer from "../views/Login/authReducer";
+import patientReducer from "../views/SearchPage/patientsReducer";
 
 export default asyncReducers =>
     combineReducers({ app: appReducer,
-        auth: authReducer, ...asyncReducers });
+        auth: authReducer, data: patientReducer, ...asyncReducers });

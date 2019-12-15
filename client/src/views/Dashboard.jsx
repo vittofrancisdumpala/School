@@ -5,8 +5,13 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import {Nav} from "../components/Nav";
+import {Switch} from "react-router-dom";
 import {Sidebar} from "../components/Sidebar";
 import * as PropTypes from "prop-types";
+import ProfilePage from "./ProfilePage/ProfilePage";
+import PrivateRoute from "../components/PrivateRoute";
+import InfoCards from "./DashboardPage/section/InfoCards";
+import SearchRecords from "./SearchPage/SearchPage";
 
 function Copyright() {
     return (
@@ -124,7 +129,23 @@ export default function Dashboard(props) {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer}/>
                 <Container maxWidth="lg" className={classes.container}>
-                    <h1>Content</h1>
+                    <Switch>
+                        <PrivateRoute
+                            isLoggedIn={true}
+                            path="/dashboard/account"
+                            component={ProfilePage}
+                        />
+                        <PrivateRoute
+                            isLoggedIn={true}
+                            path="/dashboard/search"
+                            component={SearchRecords}
+                        />
+                        <PrivateRoute
+                            isLoggedIn={true}
+                            path="/dashboard"
+                            component={InfoCards}
+                        />
+                    </Switch>
                 </Container>
                 <Copyright/>
             </main>
@@ -132,7 +153,7 @@ export default function Dashboard(props) {
     );
 }
 Dashboard.propTypes = {
-    classes: PropTypes.func,
+    classes: PropTypes.object,
     isDarkMode: PropTypes.bool.isRequired,
     handleTheme: PropTypes.func.isRequired,
 };

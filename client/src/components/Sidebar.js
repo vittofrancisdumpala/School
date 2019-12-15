@@ -15,7 +15,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 
 export function Sidebar(props) {
   function activeRoute(routeName) {
-    return props.location.pathname.indexOf(routeName) > -1;
+    return (props.location.pathname === routeName);
   }
   return (
     <Drawer
@@ -39,9 +39,9 @@ export function Sidebar(props) {
           <ListItem
             button
             component={NavLink}
-            to={route.path}
+            to={route.layout+route.path}
             key={index}
-            selected={activeRoute(route.path)}
+            selected={activeRoute(route.layout+route.path)}
           >
             <ListItemIcon>{<route.icon />}</ListItemIcon>
             <ListItemText primary={route.name} />

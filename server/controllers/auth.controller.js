@@ -22,11 +22,9 @@ export function getUser(req, res) {
  */
 export function login(user, res) {
   const cleanUser = Object.assign({}, user);
-
   if (cleanUser.local) {
     delete cleanUser.local.password;
   }
-
   res.json({ user: cleanUser });
 }
 
