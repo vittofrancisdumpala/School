@@ -7,9 +7,10 @@ import mongoose from 'mongoose';
 
 const path = require('path');
 import config from './config';
-
+var compression = require('compression');
 // Create app instance
 const app = express();
+app.use(compression());
 const router = express.Router();
 // Connect to DB
 mongoose.connect(config.mongoURL, { useNewUrlParser: true });
