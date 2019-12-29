@@ -2,6 +2,7 @@ import { searchConstants } from "./constants";
 
 const initialState = {
    patients: [],
+   prescriptions: [],
 };
 
 const patientReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const patientReducer = (state = initialState, action) => {
             return {
                 ...state,
                 patients: action.payload,
+            };
+        case searchConstants.LOAD_PRESCRIPTION :
+            return {
+                ...state,
+                prescriptions: action.payload,
             };
         default:
             return state;

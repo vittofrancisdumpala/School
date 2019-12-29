@@ -7,7 +7,7 @@ import Patient from '../models/patient.model';
  * @returns record
  */
 export function createPatient(req, res) {
-    const { firstName, lastName, email, dob, age, phone, createdBy } = req.body;
+    const { firstName, gender, lastName, email, dob, age, phone, createdBy, bloodType, height } = req.body;
     Patient.findOne({ 'phone': phone }, (err, userMatch) => {
         if (userMatch) {
             return res.json({
@@ -21,7 +21,10 @@ export function createPatient(req, res) {
             dob: dob,
             age: age,
             phone: phone,
-            createdBy: createdBy
+            createdBy: createdBy,
+            bloodType: bloodType,
+            height: height,
+            gender: gender,
         });
         patient.save((error, savedPatient) => {
             if (error){
@@ -32,6 +35,7 @@ export function createPatient(req, res) {
         });
     });
 }
+
 /**
  * Get Patient Record By Id
  * @param req
@@ -39,7 +43,7 @@ export function createPatient(req, res) {
  * @returns record
  */
 export function getPatientById(req, res) {
-    const id = req.params.patientId;
+    const id = req.params.id;
     Patient.findById(id)
         .then((patient) => {
             res.status(200).json({
@@ -48,7 +52,7 @@ export function getPatientById(req, res) {
             });
         })
         .catch((err) => {
-            res.status(500).json({
+            res.status(404).json({
                 success: false,
                 message: 'This patient does not exist',
                 error: err.message,
@@ -63,7 +67,7 @@ export function getPatientById(req, res) {
  * @returns updated record
  */
 export function updatePatient(req, res) {
-    const id = req.params.patientId;
+    const id = req.params.id;
     const updateObject = req.body;
     Patient.update({ _id:id }, { $set:updateObject })
         .exec()
@@ -81,6 +85,7 @@ export function updatePatient(req, res) {
             });
         });
 }
+
 /**
  * Delete Patient By ID
  * @param req
@@ -88,7 +93,7 @@ export function updatePatient(req, res) {
  * @returns void
  */
 export function deletePatient(req, res) {
-    const id = req.params.patientId;
+    const id = req.params.id;
     Patient.findByIdAndRemove(id)
         .exec()
         .then(()=> res.status(204).json({

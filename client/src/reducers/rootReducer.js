@@ -7,5 +7,9 @@ import authReducer from "../views/Login/authReducer";
 import patientReducer from "../views/SearchPage/patientsReducer";
 
 export default asyncReducers =>
-    combineReducers({ app: appReducer,
-        auth: authReducer, data: patientReducer, ...asyncReducers });
+    combineReducers({
+            app: appReducer,
+            auth: authReducer,
+            data: patientReducer,
+            ...asyncReducers
+    });

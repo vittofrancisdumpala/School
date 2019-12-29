@@ -6,7 +6,7 @@ mongoose.promise = Promise;
 const patientSchema = new Schema({
     firstName: { type: String, unique: false, required: true },
     lastName: { type: String, unique: false , required: true },
-    email: {  type: String, unique: true, required: false},
+    email: {  type: String, unique: true, required: false },
     dob : { type: Date, required: true },
     age: { type: Number, required: true },
     phone: { type: String,
@@ -18,7 +18,10 @@ const patientSchema = new Schema({
         },
         required: [true, 'User phone number required']
     },
-    createdBy: { type: String, unique: false, required: true }
+    gender: { type: String, unique: false, required: true },
+    createdBy: { type: String, unique: false, required: true },
+    height: { type: Number, required: true },
+    bloodType: { type: String, required: true },
 });
 
 // Define schema methods

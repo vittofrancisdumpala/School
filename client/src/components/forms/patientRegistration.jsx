@@ -24,6 +24,7 @@ const style = (theme) => ({
     },
 });
 const phoneRegExp = /^[6-9]\d{9}$/;
+const bloodGroupRegExp = /^(A|B|AB|O)[-+]$/;
 
 function _calculateAge(dob) { // birthday is a date
     let ageDifMs = Date.now() - dob.getTime();
@@ -61,6 +62,14 @@ function PatientRegistration(props) {
                     phone: Yup.string()
                         .matches(phoneRegExp, 'Phone number is not valid')
                         .required('Required'),
+                    bloodType: Yup.string()
+                        .matches(bloodGroupRegExp, 'Invalid Blood Group')
+                        .required('Required'),
+                    height: Yup
+                        .number()
+                        .required('Required')
+                        .positive()
+                        .integer(),
                 })}
             >
                 {(props) => {
@@ -219,6 +228,43 @@ function PatientRegistration(props) {
                                         helperText={(errors.phone && touched.phone) && errors.phone}
                                     />
                                 </GridItem>
+                                <GridItem xs={12} md={6} lg={6}>
+                                    <TextField
+                                        id="outlined-required"
+                                        label="Height"
+                                        name="height"
+                                        value={values.height}
+                                        margin="normal"
+                                        variant="outlined"
+                                        fullWidth
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="start">
+                                                    cm
+                                                </InputAdornment>
+                                            ),
+                                        }}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={(errors.height && touched.height)}
+                                        helperText={(errors.height && touched.height) && errors.height}
+                                    />
+                                </GridItem>
+                                <GridItem xs={12} md={6} lg={6}>
+                                    <TextField
+                                        id="outlined-required"
+                                        label="Blood Group"
+                                        name="bloodType"
+                                        value={values.bloodType}
+                                        margin="normal"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        error={(errors.bloodType && touched.bloodType)}
+                                        helperText={(errors.bloodType && touched.bloodType) && errors.bloodType}
+                                    />
+                                </GridItem>
                                 <GridItem sm={12} md={12} lg={12}>
                                     <br />
                                     <Divider variant="fullWidth" />
@@ -260,7 +306,6 @@ createdBy: state.auth.user.local.email,
 });
 const mapDispatchToProps = dispatch => ({
     submit: (values) => {
-        console.log(values);
         dispatch(createPatient(values));
     }
 });
