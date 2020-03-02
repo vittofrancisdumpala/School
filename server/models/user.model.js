@@ -11,6 +11,7 @@ const userSchema = new Schema({
     email: { type: String, unique: false, required: false },
     password: { type: String, unique: false, required: false },
   },
+  role: { type: String, default: "USER"},
 });
 
 // Define schema methods

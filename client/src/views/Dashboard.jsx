@@ -10,8 +10,6 @@ import {Sidebar} from "../components/Sidebar";
 import * as PropTypes from "prop-types";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import PrivateRoute from "../components/PrivateRoute";
-import InfoCards from "./DashboardPage/section/InfoCards";
-import SearchRecords from "./SearchPage/SearchPage";
 
 function Copyright() {
     return (
@@ -134,16 +132,6 @@ export default function Dashboard(props) {
                             isLoggedIn={true}
                             path="/dashboard/account"
                             component={ProfilePage}
-                        />
-                        <PrivateRoute
-                            isLoggedIn={true}
-                            path="/dashboard/search"
-                            component={SearchRecords}
-                        />
-                        <PrivateRoute
-                            isLoggedIn={true}
-                            path="/dashboard"
-                            component={InfoCards}
                         />
                     </Switch>
                 </Container>

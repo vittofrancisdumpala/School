@@ -25,13 +25,10 @@ app.use(logger('dev'));
 
 // Link routes
 import auth from './routes/auth.route'
-import patient from './routes/patient.route'
-import prescription from './routes/prescription.route'
 
 //app.use('/api', stores);
 app.use('/api/auth', auth);
-app.use('/api/client',patient);
-app.use('/api/presc',prescription);
+
 // Serve static assets
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
