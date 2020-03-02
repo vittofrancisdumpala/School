@@ -31,7 +31,14 @@ export const loginAction = (email, password, history) => {
                      dispatch(
                          changeStoreState(loginConstants.USER_IS_AUTHENTICATED, response.data.user)
                      );
-                     history.push("/dashboard");
+                     const role = response.data.user.role;
+                     if(role === "ADMIN") {
+                         history.push("/dashboard");
+                     } else if(role === "TEACHER") {
+                         history.push("/teacher");
+                     } else {
+                         history.push("/student");
+                     }
                  }
             })
             .catch(error => {
